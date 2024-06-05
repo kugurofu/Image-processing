@@ -10,8 +10,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
-        ('share/' + package_name + '/launch', ['launch/pixel_info_launch.py','launch/image_publisher_launch.py']),
-        ('share/' + package_name + '/images', ['images/test1.jpeg']),
+        ('share/' + package_name + '/launch', ['launch/pixel_info_launch.py','launch/image_publisher_launch.py','launch/image2_publisher_launch.py']),
+        ('share/' + package_name + '/images', ['images/test1.jpeg','images/test2.jpg']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -24,6 +24,7 @@ setup(
         'console_scripts': [
         	'pixel_info_node = image_pixel_info.pixel_info_node:main',
         	'image_publisher_node = image_pixel_info.image_publisher_node:main',
+        	'image2_publisher_node = image_pixel_info.image2_publisher_node:main',
         ],
     },
 )
