@@ -22,8 +22,11 @@ setup(
     entry_points={
         'console_scripts': [
         	'color_discrimination_node = image_color_discrimination.color_discrimination_node:main',
+        	'color_discrimination2_node = image_color_discrimination.color_discrimination2_node:main',
         	'grayscale_node = image_color_discrimination.grayscale_node:main',
-        	'grayscale2_node = image_color_discrimination.grayscale2_node:main'
+        	'grayscale2_node = image_color_discrimination.grayscale2_node:main',
+        	'rgb_judge_node = image_color_discrimination.rgb_judge_node:main',
+        	'gray_judge_node = image_color_discrimination.gray_judge_node:main'
         ],
     },
 )
