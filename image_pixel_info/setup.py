@@ -25,6 +25,8 @@ setup(
         	'pixel_info_node = image_pixel_info.pixel_info_node:main',
         	'image_publisher_node = image_pixel_info.image_publisher_node:main',
         	'image2_publisher_node = image_pixel_info.image2_publisher_node:main',
+        	'mjpg_camera_publisher = image_pixel_info.mjpg_camera_publisher:main',
+        	'image_subscriber = image_pixel_info.image_subscriber_node:main',
         ],
     },
 )
