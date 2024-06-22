@@ -11,7 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/pixel_info_launch.py','launch/image_publisher_launch.py','launch/image2_publisher_launch.py']),
-        ('share/' + package_name + '/images', ['images/test1.jpeg','images/test2.jpg','images/202406131905_1.jpg','images/202406131905_2.jpg','images/202406141149_2.jpg','images/202406141149_3.jpg','images/202406141157_1.jpg','images/202406212220_1.jpg','images/202406212220_2.jpg']),
+        ('share/' + package_name + '/images', ['images/test1.jpeg','images/test2.jpg','images/test3.jpg','images/202406131905_1.jpg','images/202406131905_2.jpg','images/202406141149_2.jpg','images/202406141149_3.jpg','images/202406141157_1.jpg','images/202406212220_1.jpg','images/202406212220_2.jpg']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -30,6 +30,7 @@ setup(
         	'fisheye_undistort = image_pixel_info.fisheye_undistort:main',
         	'caribration = image_pixel_info.caribration:main',
         	'yolo = image_pixel_info.yolo:main',
+        	'yolov8 = image_pixel_info.yolov8:main',
         ],
     },
 )
