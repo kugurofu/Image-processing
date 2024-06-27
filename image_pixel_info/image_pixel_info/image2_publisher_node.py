@@ -16,7 +16,7 @@ class Image2PublisherNode(Node):
         self.bridge = CvBridge()
         # パッケージの共有ディレクトリから画像ファイルのパスを取得
         package_share_directory = get_package_share_directory('image_pixel_info')
-        self.image_path = os.path.join(package_share_directory, 'images', 'test2.jpg')
+        self.image_path = os.path.join(package_share_directory, 'images', 'test3.jpg')
         self.cv_image = cv2.imread(self.image_path)
 
         if self.cv_image is None:
