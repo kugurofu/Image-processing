@@ -31,6 +31,7 @@ setup(
         	'caribration = image_pixel_info.caribration:main',
         	'yolo = image_pixel_info.yolo:main',
         	'yolov8 = image_pixel_info.yolov8:main',
+        	'traffic_light_controller = image_pixel_info.traffic_light_controller:main',
         ],
     },
 )
