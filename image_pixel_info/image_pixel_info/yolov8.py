@@ -40,6 +40,7 @@ class TrafficLightDetector(Node):
                 cv2.imshow('Pedestrian Traffic Light', pedestrian_light_img)
                 cv2.waitKey(1)  # ウィンドウの更新
         else:
+            self.publisher.publish(String(data="None"))
             self.get_logger().info('No pedestrian traffic light detected')
 
     def detect_traffic_light(self, image):
