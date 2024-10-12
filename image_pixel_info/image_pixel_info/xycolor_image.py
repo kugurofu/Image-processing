@@ -8,9 +8,9 @@ from cv_bridge import CvBridge
 import cv2
 import numpy as np
 
-class Luminance_Image_Node(Node):
+class XYcolor_Image_Node(Node):
     def __init__(self):
-        super().__init__('Luminance_Image_Node')
+        super().__init__('XYcolor_Image_Node')
         
         # サブスクライバの設定
         self.subscription = self.create_subscription(
@@ -21,12 +21,12 @@ class Luminance_Image_Node(Node):
         self.subscription  # prevent unused variable warning
         
         # パブリッシャの設定
-        self.publisher_luminance = self.create_publisher(Image, '/luminancefactor_image', 10)
+        self.publisher_XYcolor = self.create_publisher(Image, '/XYcolor_image', 10)
         
         # cv_bridge のインスタンス化
         self.bridge = CvBridge()
 
-        self.get_logger().info('Luminance Image Node has been started.')
+        self.get_logger().info('XYcolor Image Node has been started.')
     
     def listener_callback(self, msg):
         try:
@@ -37,13 +37,13 @@ class Luminance_Image_Node(Node):
             return
         
         # 輝度計算
-        luminance = self.calculate_luminance(img)
+        XYcolor = self.calculate_XYcolor(img)
             
         # 輝度率計算
-        luminance_ratio_scaled = self.calculate_luminance_ratio(luminance)
+        luminance_ratio_scaled = self.calculate_XYcolor(XYcolor)
         
         # publish image
-        self.publish_images(luminance_ratio_scaled)
+        self.publish_images(XYcolor)
         
     def calculate_luminance(self, img):    
         # BGRから輝度を計算（より効率的な方法）
@@ -67,18 +67,18 @@ class Luminance_Image_Node(Node):
     
         return luminance_ratio_scaled    
     
-    def publish_images(self, img_luminance):
+    def publish_images(self, img_XYcolor):
         try:
-            #βを公開（grayscale画像）
-            luminance_msg = self.bridge.cv2_to_imgmsg(img_luminance, encoding='mono8')
-            self.publisher_luminance.publish(luminance_msg)
+            #XYを公開（カラー画像）
+            XYcolor_msg = self.bridge.cv2_to_imgmsg(img_XYcolor, encoding='bgr8')
+            self.publisher_XYcolor.publish(XYcolor_msg)
             self.get_logger().debug('Published luminance image.')
         except Exception as e:
             self.get_logger().error(f'Could not convert image to ROS message: {e}')
 
 def main(args=None):
     rclpy.init(args=args)
-    node = Luminance_Image_Node()
+    node = XYcolor_Image_Node()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
