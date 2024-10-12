@@ -33,6 +33,8 @@ setup(
         	'yolov8 = image_pixel_info.yolov8:main',
         	'traffic_light_controller = image_pixel_info.traffic_light_controller:main',
         	'waypoint_controller = image_pixel_info.waypoint_controller:main',
+        	'retinex = image_pixel_info.retinex:main',
+        	'retinex_image = image_pixel_info.retinex_image:main',
         ],
     },
 )
