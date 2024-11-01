@@ -36,6 +36,7 @@ setup(
         	'retinex = image_pixel_info.retinex:main',
         	'retinex_image = image_pixel_info.retinex_image:main',
         	'luminancefactor_image = image_pixel_info.luminancefactor_image:main',
+        	'LMS_image = image_pixel_info.LMS_image:main',
         ],
     },
 )
