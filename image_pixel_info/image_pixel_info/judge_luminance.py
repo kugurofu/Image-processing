@@ -83,39 +83,21 @@ class TrafficLightDetector(Node):
         upper_img = img_list[0]
         lower_img = img_list[1]
 
-        # RGBからHSVへ変換
-        upper_hsv = cv2.cvtColor(upper_img, cv2.COLOR_BGR2HSV)
-        lower_hsv = cv2.cvtColor(lower_img, cv2.COLOR_BGR2HSV)
+        # 上部と下部の画像をグレースケールに変換し、輝度を計算
+        upper_gray = cv2.cvtColor(upper_img, cv2.COLOR_BGR2GRAY)
+        lower_gray = cv2.cvtColor(lower_img, cv2.COLOR_BGR2GRAY)
 
-        # 赤色の範囲を定義 (信号機の赤)
-        red_lower1 = np.array([0, 50, 50])
-        red_upper1 = np.array([10, 255, 255])
-        red_lower2 = np.array([170, 50, 50])
-        red_upper2 = np.array([180, 255, 255])
+        # 輝度の合計を計算
+        upper_brightness = np.sum(upper_gray)
+        lower_brightness = np.sum(lower_gray)
 
-        # 青色の範囲を定義 (信号機の青)
-        blue_lower = np.array([85, 50, 50])
-        blue_upper = np.array([150, 255, 255])
+        self.get_logger().info(f'Upper brightness: {upper_brightness}, Lower brightness: {lower_brightness}')
 
-        # 上部画像の赤色マスク
-        upper_red_mask1 = cv2.inRange(upper_hsv, red_lower1, red_upper1)
-        upper_red_mask2 = cv2.inRange(upper_hsv, red_lower2, red_upper2)
-        upper_red_mask = upper_red_mask1 | upper_red_mask2
-
-        # 下部画像の青色マスク
-        lower_blue_mask = cv2.inRange(lower_hsv, blue_lower, blue_upper)
-
-        # 赤色ピクセルの割合を計算
-        upper_red_pixels = cv2.countNonZero(upper_red_mask)
-        lower_blue_pixels = cv2.countNonZero(lower_blue_mask)
-
-        self.get_logger().info(f'Upper red pixels: {upper_red_pixels}, Lower blue pixels: {lower_blue_pixels}')
-
-        # ピクセルのカウントに基づいて信号の色を決定
-        if upper_red_pixels > lower_blue_pixels:
-            return 'red'
+        # 明るさに基づいて信号の色を決定
+        if upper_brightness > lower_brightness:
+            return 'red'  # 上部が明るい場合は赤信号
         else:
-            return 'blue'
+            return 'blue'  # 下部が明るい場合は青信号
 
 def main(args=None):
     rclpy.init(args=args)

@@ -15,7 +15,7 @@ class Luminance_Image_Node(Node):
         # サブスクライバの設定
         self.subscription = self.create_subscription(
             Image,
-            '/retinex_image',
+            '/LMS_image',
             self.listener_callback,
             10)
         self.subscription  # prevent unused variable warning

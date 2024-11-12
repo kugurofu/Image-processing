@@ -79,7 +79,7 @@ class ChromaticAdaptationNode(Node):
         return xyz / xyz[1]
     
     def ave_srgb(self, img): 
-        return self.lrgb_to_srgb(self.srgb_to_lrgb(img).mean((0, 1)))
+        return self.lrgb_to_srgb(self.srgb_to_lrgb(img).max((0, 1)))
 
     def chromatic_adaptation(self, src_white_point, dst_white_point, src_img, adapt): 
         src_img_xyz = self.srgb_to_xyz(src_img)
