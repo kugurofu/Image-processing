@@ -57,6 +57,11 @@ class ImageProcessor(Node):
         print("1つ目の四角形の輝度平均:", mean1)
         print("2つ目の四角形の輝度平均:", mean2)
         
+        median1 = np.median(gray_image1)
+        median2 = np.median(gray_image2)
+        print("1つ目の四角形の輝度median:", median1)
+        print("2つ目の四角形の輝度median:", median2)
+        
         # メッシュでグレースケール画像をプロット
         fig = plt.figure(figsize=(10, 8))
         ax1 = fig.add_subplot(121, projection='3d')

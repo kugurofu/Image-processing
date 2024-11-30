@@ -22,8 +22,8 @@ class ImageExtractor(Node):
         cv_image = self.bridge.imgmsg_to_cv2(msg, 'bgr8')
         
         # Extract the specified regions
-        region1 = cv_image[86:108, 334:357]
-        region2 = cv_image[126:149, 334:357]
+        region1 = cv_image[176:306, 267:404]
+        region2 = cv_image[400:530, 267:404]
         
         # Display the extracted regions
         cv2.imshow("Region 1", region1)
