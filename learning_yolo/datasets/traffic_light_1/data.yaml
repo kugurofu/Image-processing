@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['trafficlight']
+
+roboflow:
+  workspace: national-institute-of-technology
+  project: traffic-light-detection-1jmgq
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/national-institute-of-technology/traffic-light-detection-1jmgq/dataset/1
