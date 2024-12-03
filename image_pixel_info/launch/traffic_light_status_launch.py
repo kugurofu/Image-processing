@@ -5,6 +5,12 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='image_pixel_info',
+            executable='camera_publisher',
+            name='camera_publisher',
+            output='screen',
+        ),
+        Node(
+            package='image_pixel_info',
             executable='LMS_image',
             name='LMS_image',
             output='screen',
