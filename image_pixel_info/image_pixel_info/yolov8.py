@@ -16,7 +16,7 @@ class TrafficLightDetector(Node):
         super().__init__('traffic_light_detector')
         self.subscription = self.create_subscription(
             Image,
-            '/retinex_image',  # トピック名を指定
+            '/LMS_image',  # トピック名を指定
             self.image_callback,
             10)
         self.publisher = self.create_publisher(String, 'traffic_light_status', 10)
@@ -94,8 +94,8 @@ class TrafficLightDetector(Node):
         red_upper2 = np.array([180, 255, 255])
 
         # 青色の範囲を定義 (信号機の青)
-        blue_lower = np.array([85, 50, 50])
-        blue_upper = np.array([150, 255, 255])
+        blue_lower = np.array([35, 50, 50])
+        blue_upper = np.array([85, 255, 255])
 
         # 上部画像の赤色マスク
         upper_red_mask1 = cv2.inRange(upper_hsv, red_lower1, red_upper1)
