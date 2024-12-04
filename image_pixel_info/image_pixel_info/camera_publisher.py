@@ -12,8 +12,8 @@ from my_msgs.action import StopFlag
 class MJPGCameraPublisher(Node):
     def __init__(self):
         super().__init__('camera_publisher')
-        self.publisher_ = self.create_publisher(Image, 'image_raw', 10)
-        self.cap = cv2.VideoCapture('/dev/webcam2')
+        self.publisher_ = self.create_publisher(Image, 'image_raw', 1)
+        self.cap = cv2.VideoCapture('/dev/webcam1')
         self.bridge = CvBridge()
         self.timer = self.create_timer(0.1, self.timer_callback)
         
@@ -42,8 +42,8 @@ class MJPGCameraPublisher(Node):
     def listener_callback(self, goal_handle):
         self.get_logger().info(f"Received goal with a: {goal_handle.request.a}, b: {goal_handle.request.b}")
         
-        # クライアントから送られた a を traffic_flag に代入
-        self.traffic_flag = goal_handle.request.a
+        # クライアントから送られた b を traffic_flag に代入
+        self.traffic_flag = goal_handle.request.b
         print(f"traffic_flag set to: {self.traffic_flag}")
         
         # フィードバックの返信
@@ -67,7 +67,9 @@ class MJPGCameraPublisher(Node):
                 image_message = self.bridge.cv2_to_imgmsg(frame, encoding='bgr8')
                 self.publisher_.publish(image_message)
             else:
-                self.get_logger().warning('フレームを取得できません')
+                self.get_logger().warning('フレームを取得できません')        
+        else:
+            self.get_logger().info('not publish image')
 
 def main(args=None):
     rclpy.init(args=args)

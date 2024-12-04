@@ -16,9 +16,9 @@ class TrafficLightDetector(Node):
         super().__init__('traffic_light_detector')
         self.subscription = self.create_subscription(
             Image,
-            '/LMS_image',  # トピック名を指定
+            '/image_raw',  # トピック名を指定
             self.image_callback,
-            10)
+            1)
         self.publisher = self.create_publisher(String, 'traffic_light_status', 10)
         self.bridge = CvBridge()
 

@@ -7,7 +7,7 @@ import cv2
 class MJPGCameraPublisher(Node):
     def __init__(self):
         super().__init__('mjpg_camera_publisher')
-        self.publisher_ = self.create_publisher(Image, 'image_raw', 10)
+        self.publisher_ = self.create_publisher(Image, 'image_raw', 1)
         self.cap = cv2.VideoCapture('/dev/webcam2')
         self.bridge = CvBridge()
         self.timer = self.create_timer(0.1, self.timer_callback)
