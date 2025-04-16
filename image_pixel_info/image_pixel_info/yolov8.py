@@ -94,8 +94,8 @@ class TrafficLightDetector(Node):
         red_upper2 = np.array([180, 255, 255])
 
         # 青色の範囲を定義 (信号機の青)
-        blue_lower = np.array([35, 50, 50])
-        blue_upper = np.array([85, 255, 255])
+        blue_lower = np.array([90, 50, 50])
+        blue_upper = np.array([140, 255, 255])
 
         # 上部画像の赤色マスク
         upper_red_mask1 = cv2.inRange(upper_hsv, red_lower1, red_upper1)

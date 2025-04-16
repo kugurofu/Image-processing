@@ -47,8 +47,11 @@ class ChromaticAdaptationNode(Node):
         dst_white_point = np.array([1.0, 1.0, 1.0])
         adapted_img = self.chromatic_adaptation(src_white_point, dst_white_point, img, self.adaptation_factor)
         
+        # クロマチック適応済みの画像にRetinex処理を適用
+        retinex_img = self.multi_scale_retinex(adapted_img)
+        
         # 公開用画像の変換と送信
-        self.publish_images(adapted_img)
+        self.publish_images(retinex_img)
 
     def srgb_to_lrgb(self, srgb): 
         return skimage.exposure.adjust_gamma(srgb, 2.2)
@@ -104,6 +107,16 @@ class ChromaticAdaptationNode(Node):
             self.get_logger().debug('Published chromatic adapted image.')
         except Exception as e:
             self.get_logger().error(f'Could not convert image to ROS message: {e}')
+    
+    def multi_scale_retinex(self,img, scales=[15, 80, 250], gain=1, offset=0):
+        img = np.clip(img, 1e-6, 1.0).astype(np.float32)  # ← ここで型変換＋ゼロ除去
+        retinex = np.zeros_like(img)
+        for scale in scales:
+            blur = cv2.GaussianBlur(img, (0, 0), sigmaX=scale)
+            retinex += np.log1p(img + 1e-6) - np.log1p(blur + 1e-6)
+        retinex = gain * retinex / len(scales)
+        retinex = np.clip(retinex + offset, 0, 1)
+        return retinex
 
 def main(args=None):
     rclpy.init(args=args)

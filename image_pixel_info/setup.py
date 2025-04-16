@@ -11,7 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/pixel_info_launch.py','launch/image_publisher_launch.py','launch/image2_publisher_launch.py','launch/traffic_light_status_launch.py']),
-        ('share/' + package_name + '/images', ['images/test1.jpeg','images/test2.jpg','images/test3.jpg','images/test4.jpg','images/202406131905_1.jpg','images/202406131905_2.jpg','images/202406141149_2.jpg','images/202406141149_3.jpg','images/202406141157_1.jpg','images/202406212220_1.jpg','images/202406212220_2.jpg']),
+        ('share/' + package_name + '/images', ['images/test6.jpeg','images/test7.jpeg','images/test5.jpeg','images/test2.jpg','images/test3.jpg','images/test4.jpg','images/202406131905_1.jpg','images/202406131905_2.jpg','images/202406141149_2.jpg','images/202406141149_3.jpg','images/202406141157_1.jpg','images/202406212220_1.jpg','images/202406212220_2.jpg','images/images.jpeg','images/1.jpeg','images/2.jpeg','images/3.jpeg','images/4.jpeg','images/5.jpeg','images/6.jpeg','images/7.jpeg','images/8.jpeg','images/9.jpeg','images/10.jpeg','images/11.jpeg','images/12.jpeg','images/13.jpeg','images/14.jpeg','images/15.jpeg','images/16.jpeg','images/17.jpeg','images/18.jpeg','images/19.jpeg','images/20.jpeg','images/21.jpeg','images/22.jpeg','images/23.jpeg','images/24.jpeg','images/25.jpeg','images/26.jpeg','images/27.jpeg','images/28.jpeg','images/29.jpeg','images/30.jpeg','images/31.webp','images/32.webp','images/33.jpeg','images/34.jpeg','images/35.jpeg','images/36.jpeg','images/37.jpeg','images/38.jpeg','images/39.jpeg','images/40.jpeg',]),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
